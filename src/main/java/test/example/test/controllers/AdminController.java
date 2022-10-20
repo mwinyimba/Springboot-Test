@@ -1,43 +1,44 @@
 package test.example.test.controllers;
 
-
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import test.example.test.models.Admin;
-import test.example.test.models.Customer;
+import test.example.test.models.Employee;
 import test.example.test.sevices.AdminServices;
-import test.example.test.sevices.CustomerServices;
 
 import java.util.List;
 import java.util.Optional;
+@CrossOrigin
 
 @RestController
 @RequestMapping("api/admin")
 public class AdminController {
+    @Autowired
     private AdminServices adminServices;
     @PostMapping("/")
-    public Admin addAdmin(@RequestBody Admin admin){
+    public Admin addAdmin(@RequestBody Admin s){
+       return adminServices.addAdmin(s);
+    }
 
-        return adminServices.addAdmin(admin);
+    @GetMapping("/")
+    public List<Admin> getAll(){
+        return adminServices.getAll();
     }
-    @GetMapping
-    public List<Admin> getAll() {return  AdminServices.getAll();
-    }
+
     @GetMapping("/{id}")
     public Optional<Admin> getById(@PathVariable Long id){
-        return AdminServices.findById(id);
+        return adminServices.findById(id);
     }
 
     @PutMapping("/{id}")
-    public Admin updateAdmin(@io.swagger.v3.oas.annotations.parameters.RequestBody Admin admin, @PathVariable Long id){
-        admin.setId(id);
-        return adminServices.addAdmin(admin);
+    public Admin updateAdmin(@RequestBody Admin s,@PathVariable Long id){
+        s.setId(id);
+        return adminServices.addAdmin(s);
     }
 
     @DeleteMapping("/{id}")
     public void deleteMe(@PathVariable Long id){
         adminServices.deleteById(id);
     }
-
-
-
 }

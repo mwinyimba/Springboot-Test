@@ -1,27 +1,31 @@
 package test.example.test.sevices;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import test.example.test.Repository.AdminRepository;
 import test.example.test.models.Admin;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AdminServices {
-    private static AdminRepository adminRepo;
+    @Autowired
+    private static AdminRepository adminRepository;
 
-    public static List<Admin> getAll() {
-        return adminRepo.findAll();
+    public List<Admin> getAll() {
+        return adminRepository.findAll();
     }
 
-    public static Optional<Admin> findById(Long id) {
-        return adminRepo.findById(id);
+    public Optional<Admin> findById(Long id) {
+        return  adminRepository.findById(id);
     }
 
-    public Admin addAdmin(Admin admin) {
-        return  adminRepo.save(admin);
+    public static Admin addAdmin(Admin s) {
+        return adminRepository.save(s);
     }
 
     public void deleteById(Long id) {
-        adminRepo.deleteById(id);
+        adminRepository.deleteById(id);
     }
 }

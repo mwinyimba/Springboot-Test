@@ -22,7 +22,8 @@ public class Employee {
     private String city;
     private String gender;
     private String role;
-    @ManyToOne
-    private Employee employee;
+
+
+
 
 }
