@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +22,8 @@ public class Customer {
     private Integer phone_no;
     private  String address;
 
-    @ManyToOne
-    private Customer  Customer;
+    @OneToMany(targetEntity = Product.class , cascade = CascadeType.ALL)
+//    @JoinColumn(name = "product" , referencedColumnName = "id")
+    private List<Product> products;
 
 }

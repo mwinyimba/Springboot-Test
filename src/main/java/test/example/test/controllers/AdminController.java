@@ -9,16 +9,16 @@ import test.example.test.sevices.AdminServices;
 
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin
 
 @RestController
 @RequestMapping("api/admin")
 public class AdminController {
     @Autowired
     private AdminServices adminServices;
+
     @PostMapping("/")
     public Admin addAdmin(@RequestBody Admin s){
-       return adminServices.addAdmin(s);
+        return adminServices.addAdmin(s);
     }
 
     @GetMapping("/")

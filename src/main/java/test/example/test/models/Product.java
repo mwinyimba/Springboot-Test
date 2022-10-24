@@ -5,19 +5,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "admin")
-
-public class Admin {
+@Table(name = "product")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "admin")
-    private  Long id;
-    private  String name;
-    private  String email;
-    private String address;
+    @Column (name = "product")
+    private Long id;
+    private  String product_name;
+    private Integer price;
+    private  String qty;
+    @ManyToOne 
+
+    private   Customer customer;
+
+
 }
